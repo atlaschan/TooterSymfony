@@ -1,0 +1,73 @@
+<html>
+<head>
+    <title id="pageTitle">{{messages["signUp.now"]}}</title>
+	{% stylesheets "@TooterBundle/Resources/public/assets/css/bootstrap.min.css"%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+    <link rel="icon" type="image/vnd.microsoft.icon" href="{{base_directory}}/assets/img/favicon.ico"/>
+</head>
+<body style="padding-top: 15px;">
+<div class="container-fluid">
+    <div class="hero-unit">
+        <h3>{{messages["signUp.now"]}}</h3>
+        <form id="customer" action="sign-up" method="POST">
+			<div class="control-group">
+				{% if error %}
+						<div id="{{error.id}}" class="{{error.styleClass}}">
+						{% if error.message in messages|keys %}
+							{{messages[error.message]}}
+						{% else %}
+							{{error.message}}
+						{% endif %}
+						</div>
+				{% endif %}
+			</div>
+            
+            <div class="control-group">
+                <label class="control-label" for="firstName">{{messages["customer.first.name"]}}</label>
+                <input id="firstName" name="firstName" type="text" value=""/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="lastName">{{messages["customer.last.name"]}}</label>
+                <input id="lastName" name="lastName" type="text" value=""/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="email">{{messages["customer.email"]}}</label>
+                <input id="email" name="email" type="text" value=""/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="password">{{messages["customer.password"]}}</label>
+                <input id="password" name="password" type="password" value=""/>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="confirmPassword">{{messages["customer.password.confirm"]}}</label>
+                <input id="confirmPassword" name="confirmPassword" type="password" value=""/>
+            </div>
+            <div class="control-group">
+                <label class="radio inline" style="margin-left: -18px !important;">{{messages["customer.account.type"]}}:</label>&nbsp;
+                <label class="radio inline">
+                    <input id="groupUrl1" name="groupUrl" class="radio" type="radio" value="{{application_property["stormpath.sdk.administrator.rest.url"]}}"/> Administrator
+                </label>
+                <label class="radio inline">
+                    <input id="groupUrl2" name="groupUrl" class="radio" type="radio" value="{{application_property["stormpath.sdk.premium.rest.url"]}}"/> Premium
+                </label>
+                <label class="radio inline">
+                    <input id="groupUrl3" name="groupUrl" class="radio" type="radio" value="" checked="checked"/> Basic
+                </label>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <a class="btn" href="login">{{messages["return.message"]}}</a>
+                   <button class="btn btn-primary" type="submit">{{messages["customer.register"]}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+{% javascripts '@TooterBundle/Resources/public/assets/js/bootstrap.min.js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
+</html>

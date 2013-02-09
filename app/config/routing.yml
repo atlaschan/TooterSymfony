@@ -1,0 +1,35 @@
+# Internal routing configuration to handle ESI
+# ****** WARNING ******
+# This route should be enabled with caution as it can open a security vulnerability
+# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
+# ****** WARNING ******
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal
+_welcome:
+    pattern:  /
+    defaults: { _controller: TooterBundle:Index:login }
+
+_login:
+    resource: "@TooterBundle/Controller/IndexController.php"
+    type:     annotation
+
+_profile:
+    resource: "@TooterBundle/Controller/ProfileController.php"
+    type:     annotation
+
+_reset_password:
+    resource: "@TooterBundle/Controller/PasswordController.php"
+    type:     annotation
+
+_reset_password_msg:
+    resource: "@TooterBundle/Controller/PasswordController.php"
+    type:     annotation
+
+_sign_up:
+    resource: "@TooterBundle/Controller/SignUpController.php"
+    type:     annotation
+
+_tooter:
+    resource: "@TooterBundle/Controller/TootController.php"
+    type:     annotation

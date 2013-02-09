@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title id="pageTitle">{{messages["tooter.logout"]}}</title>
+	{% stylesheets "@TooterBundle/Resources/public/assets/css/bootstrap.min.css"%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+    <link rel="icon" type="image/vnd.microsoft.icon" href="<?php echo $base_directory; ?>/assets/img/favicon.ico"/>
+
+</head>
+<body style="padding-top: 15px;">
+<div class="container-fluid">
+    <div class="hero-unit">
+        <h3>{{messages["logout.message"]}}</h3>
+
+        <a class="btn btn-primary" href="login">{{messages["logout.login.page"]}}</a>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+{% javascripts '@TooterBundle/Resources/public/assets/js/bootstrap.min.js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
+</html>

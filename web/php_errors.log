@@ -1,0 +1,71 @@
+[08-Feb-2013 07:26:55 UTC] PHP Warning:  date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in E:\Project\stormpathsymfony\public\app\SymfonyRequirements.php on line 434
+[08-Feb-2013 07:26:55 UTC] PHP Warning:  date_default_timezone_get(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in E:\Project\stormpathsymfony\public\app\SymfonyRequirements.php on line 435
+[08-Feb-2013 04:11:04 America/Los_Angeles] PHP Fatal error:  Class 'Stormpath\TooterBundle\Controller\Response' not found in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\TestController.php on line 20
+[08-Feb-2013 04:30:57 America/Los_Angeles] PHP Fatal error:  Class 'Stormpath\TooterBundle\Controller\AbstractActionController' not found in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\IndexController.php on line 21
+[08-Feb-2013 04:31:59 America/Los_Angeles] PHP Fatal error:  Class 'Zend\Form\Form' not found in E:\Project\stormpathsymfony\src\Tooter\Form\LoginForm.php on line 8
+[08-Feb-2013 04:34:32 America/Los_Angeles] PHP Fatal error:  Cannot call constructor in E:\Project\stormpathsymfony\src\Tooter\Form\LoginForm.php on line 25
+[08-Feb-2013 04:35:07 America/Los_Angeles] PHP Fatal error:  Call to undefined method Symfony\Component\HttpFoundation\Request::isPost() in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\IndexController.php on line 35
+[08-Feb-2013 04:37:22 America/Los_Angeles] PHP Warning:  Uncaught exception 'ErrorException' with message 'Warning: require(stormpathconfig/vars.php): failed to open stream: No such file or directory in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\IndexController.php line 30' in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\IndexController.php:30
+Stack trace:
+#0 E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\IndexController.php(30): Symfony\Component\HttpKernel\Debug\ErrorHandler->handle(2, 'require(stormpa...', 'E:\Project\stor...', 30, Array)
+#1 E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\IndexController.php(30): Stormpath\TooterBundle\Controller\IndexController::loginAction()
+#2 [internal function]: Stormpath\TooterBundle\Controller\IndexController->loginAction()
+#3 E:\Project\stormpathsymfony\app\bootstrap.php.cache(1426): call_user_func_array(Array, Array)
+#4 E:\Project\stormpathsymfony\app\bootstrap.php.cache(1390): Symfony\Component\HttpKernel\HttpKernel->handleRaw(Object(Symfo in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\IndexController.php on line 30
+[08-Feb-2013 04:37:22 America/Los_Angeles] PHP Fatal error:  Stormpath\TooterBundle\Controller\IndexController::loginAction(): Failed opening required 'stormpathconfig/vars.php' (include_path='.;E:/Project/beta/library;D:/Program Files (x86)/httpd-2.4.3-win32/Apache24/htdocs/stormpath/lib') in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\IndexController.php on line 30
+[08-Feb-2013 04:39:47 America/Los_Angeles] PHP Fatal error:  Class 'Services_Stormpath_Client_ClientBuilder' not found in E:\Project\stormpathsymfony\src\Tooter\Model\SDK\DefaultStormpathService.php on line 42
+[08-Feb-2013 04:45:33 America/Los_Angeles] PHP Warning:  Uncaught exception 'ErrorException' with message 'Warning: require_once(HTTP/Request2.php): failed to open stream: No such file or directory in E:\Project\stormpathsymfony\src\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php line 2' in E:\Project\stormpathsymfony\src\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php:2
+Stack trace:
+#0 E:\Project\stormpathsymfony\src\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php(2): Symfony\Component\HttpKernel\Debug\ErrorHandler->handle(2, 'require_once(HT...', 'E:\Project\stor...', 2, Array)
+#1 E:\Project\stormpathsymfony\src\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php(2): require_once()
+#2 E:\Project\stormpathsymfony\src\stormpath-sdk-php\Services\Stormpath.php(25): include('E:\Project\stor...')
+#3 [internal function]: Services_Stormpath_autoload('Services_Stormp...')
+#4 E:\Project\stormpathsymfony\src\stormpath-sdk-php\Services\Stormpath\Client\Client.php(63): spl_autoload_cal in E:\Project\stormpathsymfony\src\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php on line 2
+[08-Feb-2013 04:45:33 America/Los_Angeles] PHP Fatal error:  main(): Failed opening required 'HTTP/Request2.php' (include_path='E:\Project\stormpathsymfony\web/../src') in E:\Project\stormpathsymfony\src\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php on line 30
+[08-Feb-2013 04:47:20 America/Los_Angeles] PHP Fatal error:  Class 'Tooter\Service' not found in E:\Project\stormpathsymfony\library\stormpathconfig\vars.php on line 8
+[08-Feb-2013 04:51:09 America/Los_Angeles] PHP Fatal error:  Class 'Tooter\Service' not found in E:\Project\stormpathsymfony\library\stormpathconfig\vars.php on line 8
+[08-Feb-2013 04:51:40 America/Los_Angeles] PHP Warning:  Uncaught exception 'ErrorException' with message 'Warning: require_once(HTTP/Request2.php): failed to open stream: No such file or directory in E:\Project\stormpathsymfony\library\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php line 2' in E:\Project\stormpathsymfony\library\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php:2
+Stack trace:
+#0 E:\Project\stormpathsymfony\library\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php(2): Symfony\Component\HttpKernel\Debug\ErrorHandler->handle(2, 'require_once(HT...', 'E:\Project\stor...', 2, Array)
+#1 E:\Project\stormpathsymfony\library\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php(2): require_once()
+#2 E:\Project\stormpathsymfony\library\stormpath-sdk-php\Services\Stormpath.php(25): include('E:\Project\stor...')
+#3 [internal function]: Services_Stormpath_autoload('Services_Stormp...')
+#4 E:\Project\stormpathsymfony\library\stormpath-sdk-php\Services\Stormpath\Client\Client.p in E:\Project\stormpathsymfony\library\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php on line 2
+[08-Feb-2013 04:51:40 America/Los_Angeles] PHP Fatal error:  main(): Failed opening required 'HTTP/Request2.php' (include_path='E:\Project\stormpathsymfony\web/../library') in E:\Project\stormpathsymfony\library\stormpath-sdk-php\Services\Stormpath\Http\HttpClientRequestExecutor.php on line 30
+[08-Feb-2013 07:33:44 America/Los_Angeles] PHP Fatal error:  Class 'Zend\Form\Form' not found in E:\Project\stormpathsymfony\src\Tooter\Form\ResetPasswordForm.php on line 8
+[08-Feb-2013 10:07:16 America/Los_Angeles] PHP Parse error:  syntax error, unexpected '$user' (T_VARIABLE) in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\IndexController.php on line 38
+[08-Feb-2013 10:15:09 America/Los_Angeles] PHP Warning:  Uncaught exception 'ErrorException' with message 'Notice: Undefined variable: form in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\PasswordController.php line 43' in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\PasswordController.php:43
+Stack trace:
+#0 E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\PasswordController.php(43): Symfony\Component\HttpKernel\Debug\ErrorHandler->handle(8, 'Undefined varia...', 'E:\Project\stor...', 43, Array)
+#1 [internal function]: Stormpath\TooterBundle\Controller\PasswordController->resetPasswordAction()
+#2 E:\Project\stormpathsymfony\app\bootstrap.php.cache(1426): call_user_func_array(Array, Array)
+#3 E:\Project\stormpathsymfony\app\bootstrap.php.cache(1390): Symfony\Component\HttpKernel\HttpKernel->handleRaw(Object(Symfony\Component\HttpFoundation\Request), 1)
+#4 E:\Project\stormpathsymfony\app\bootstrap.php.cache(1566): Symfony\Component\HttpKernel\HttpKernel->handle(Object(Symfony\Component\HttpFoundation\Request) in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\PasswordController.php on line 43
+[08-Feb-2013 10:15:09 America/Los_Angeles] PHP Fatal error:  Call to a member function getData() on a non-object in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\PasswordController.php on line 43
+[08-Feb-2013 10:49:28 America/Los_Angeles] PHP Warning:  Uncaught exception 'ErrorException' with message 'Notice: Undefined variable: toot in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\TootController.php line 50' in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\TootController.php:50
+Stack trace:
+#0 E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\TootController.php(50): Symfony\Component\HttpKernel\Debug\ErrorHandler->handle(8, 'Undefined varia...', 'E:\Project\stor...', 50, Array)
+#1 [internal function]: Stormpath\TooterBundle\Controller\TootController->tooterAction()
+#2 E:\Project\stormpathsymfony\app\bootstrap.php.cache(1426): call_user_func_array(Array, Array)
+#3 E:\Project\stormpathsymfony\app\bootstrap.php.cache(1390): Symfony\Component\HttpKernel\HttpKernel->handleRaw(Object(Symfony\Component\HttpFoundation\Request), 1)
+#4 E:\Project\stormpathsymfony\app\bootstrap.php.cache(1566): Symfony\Component\HttpKernel\HttpKernel->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#5 E:\Projec in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\TootController.php on line 50
+[08-Feb-2013 10:49:28 America/Los_Angeles] PHP Fatal error:  Call to a member function exchangeArray() on a non-object in E:\Project\stormpathsymfony\src\Stormpath\TooterBundle\Controller\TootController.php on line 43
+[09-Feb-2013 08:11:09 America/Los_Angeles] PHP Fatal error:  Uncaught exception 'UnexpectedValueException' with message 'The stream or file "E:/Project/stormpathsymfony/app/logs/prod.log" could not be opened: failed to open stream: No such file or directory' in E:\Project\TooterSymfony\app\cache\prod\classes.php:9885
+Stack trace:
+#0 E:\Project\TooterSymfony\app\cache\prod\classes.php(9814): Monolog\Handler\StreamHandler->write(Array)
+#1 E:\Project\TooterSymfony\app\cache\prod\classes.php(9710): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#2 E:\Project\TooterSymfony\app\cache\prod\classes.php(9954): Monolog\Handler\AbstractHandler->handleBatch(Array)
+#3 E:\Project\TooterSymfony\app\cache\prod\classes.php(10236): Monolog\Handler\FingersCrossedHandler->handle(Array)
+#4 E:\Project\TooterSymfony\app\cache\prod\classes.php(10352): Monolog\Logger->addRecord(500, 'InvalidArgument...', Array)
+#5 E:\Project\TooterSymfony\vendor\symfony\symfony\src\Symfony\Component\HttpKernel\EventListener\ExceptionListener.php(55): Monolog\Logger->crit('InvalidArgument...')
+#6 [int in E:\Project\TooterSymfony\app\cache\prod\classes.php on line 9885
+[09-Feb-2013 08:11:43 America/Los_Angeles] PHP Fatal error:  Uncaught exception 'UnexpectedValueException' with message 'The stream or file "E:/Project/stormpathsymfony/app/logs/prod.log" could not be opened: failed to open stream: No such file or directory' in E:\Project\TooterSymfony\app\cache\prod\classes.php:9885
+Stack trace:
+#0 E:\Project\TooterSymfony\app\cache\prod\classes.php(9814): Monolog\Handler\StreamHandler->write(Array)
+#1 E:\Project\TooterSymfony\app\cache\prod\classes.php(9710): Monolog\Handler\AbstractProcessingHandler->handle(Array)
+#2 E:\Project\TooterSymfony\app\cache\prod\classes.php(9954): Monolog\Handler\AbstractHandler->handleBatch(Array)
+#3 E:\Project\TooterSymfony\app\cache\prod\classes.php(10236): Monolog\Handler\FingersCrossedHandler->handle(Array)
+#4 E:\Project\TooterSymfony\app\cache\prod\classes.php(10352): Monolog\Logger->addRecord(500, 'InvalidArgument...', Array)
+#5 E:\Project\TooterSymfony\vendor\symfony\symfony\src\Symfony\Component\HttpKernel\EventListener\ExceptionListener.php(55): Monolog\Logger->crit('InvalidArgument...')
+#6 [int in E:\Project\TooterSymfony\app\cache\prod\classes.php on line 9885

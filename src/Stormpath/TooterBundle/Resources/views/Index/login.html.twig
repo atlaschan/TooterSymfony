@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title id="pageTitle">{{messages["account.login"]}}</title>
+	{% stylesheets "@TooterBundle/Resources/public/assets/css/bootstrap.min.css"%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+    <link rel="icon" type="image/vnd.microsoft.icon" href="{{base_directory}}/assets/img/favicon.ico"/>
+</head>
+<body style="padding-top: 15px;">
+<div class="container-fluid">
+    <div class="hero-unit">
+        <h1>
+            {{messages["welcome.message"]}}
+        </h1>
+
+        <h3>
+            A <a href="http://www.stormpath.com">Stormpath</a> sample application
+        </h3>
+        <form action="login" method="post" name="customer" id="customer"> 
+            
+			{% if error %}
+				<div class="control-group error">
+						<span id="{{error.id}}" class="{{error.styleClass}}">{{error.message}}</span>
+						</div>
+			{% endif %}
+			
+            <div class="control-group">
+                <label class="control-label" for="userName">{{ messages["customer.userName"] }}</label>
+                <input name="userName" type="text" id="userName" value="">
+				
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="password">{{ messages["customer.password"] }}</label>
+                 <input name="password" type="password" id="password" value="">  
+            </div>
+            <div id="control-group">
+                <button type="submit" class="btn btn-primary">{{messages["account.login"]}}</button><br/><br/>
+            </div>
+            <div id="control-group">
+                <a href="reset-password">{{messages["password.forgot"]}}</a><br>
+                {{messages["account.dont.have.one"]}}
+                <a href="sign-up">{{messages["account.signup"]}}</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+{% javascripts '@TooterBundle/Resources/public/assets/js/bootstrap.min.js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
+</html>

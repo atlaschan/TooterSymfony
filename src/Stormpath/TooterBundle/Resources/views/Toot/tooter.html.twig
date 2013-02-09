@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title id="pageTitle">{{messages["tooter.title"]}}</title>
+	{% stylesheets "@TooterBundle/Resources/public/assets/css/bootstrap.min.css"%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+    <link rel="icon" type="image/vnd.microsoft.icon" href="{{base_directory}}/assets/img/favicon.ico"/>
+</head>
+<body style="padding-top: 55px;">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <a class="brand" style="margin-left: 0px;" href="https://www.stormpath.com">Tooter</a>
+        <ul class="nav">
+            <li class="active"><a href="tooter">Home</a></li>
+            <li><a href="profile">Profile</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.firstName}} {{user.lastName}} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" id="showAccountTypes">{{messages["customer.account.type"]}}: Basic</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"></li>
+                    <li><a href="logout">{{messages["tooter.logout"]}}</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="span12">
+            <form id="toot" action="tooter" method="POST">
+					
+					<div class="control-group">
+						{% if error is defined and error%}
+								<div id="{{error.id}}" class="{{error.styleClass}}">
+								{% if error.message in messages|keys %}
+									{{messages[error.message]}}
+								{% else %}
+									{{error.message}}
+								{% endif %}
+								</div>
+						{% endif %}
+					</div>
+
+                    <div class="control-group">
+                        <textarea id="tootMessage" name="tootMessage" maxlength="160" placeholder="Compose your toot here..." rows="3"></textarea>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-primary">Toot!</button>
+                        </div>
+                    </div>
+                
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <h3>{{messages["tooter.toots"]}}</h3>
+				{% if user.tootList is not null %}
+					{% for toot in user.tootList %}
+						<div class="well well-small basic" title="Poster's Account Type" data-content="Basic">
+							<code><a href="profile">{{user.firstName}} {{user.lastName}}</a>: {{toot.tootMessage}}</code>
+						</div>
+					{% endfor %}
+				{% else %}
+					<div class="alert">
+						There are no toots!
+					</div>
+				{% endif %}
+				
+        </div>
+    </div>
+</div>
+<div class="modal" id="accountTypeModalContent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="myModalLabel">Account Types</h3>
+    </div>
+    <div class="modal-body">
+        <p>
+            <ul>
+                <li><b>Basic</b>: Create Toot. Toots are not highlighted.</li>
+                <li><b>Premium</b>: Create Toot. Toots are highlighted soft yellow.</li>
+                <li><b>Admin</b>: Create Toot. Delete Toot. Toots are highlighted soft blue.</li>
+            </ul>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+{% javascripts '@TooterBundle/Resources/public/assets/js/bootstrap.min.js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.close').tooltip();
+        $('.admin, .premium, .basic').popover({trigger: 'hover', placement: 'top'});
+        $('#accountTypeModalContent').modal();
+        $('#accountTypeModalContent').modal('hide');
+        $('#showAccountTypes').on('click', function() {
+            $('#accountTypeModalContent').modal('show');
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<html>
+<head>
+    <title id="pageTitle">{{messages["profile.title"]}}</title>
+	{% stylesheets "@TooterBundle/Resources/public/assets/css/bootstrap.min.css"%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+    <link rel="icon" type="image/vnd.microsoft.icon" href="<?php echo $base_directory; ?>/assets/img/favicon.ico"/>
+</head>
+<body style="padding-top: 55px;">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <a class="brand" style="margin-left: 0px;" href="https://www.stormpath.com">Tooter</a>
+        <ul class="nav">
+            <li><a href="tooter">Home</a></li>
+            <li class="active"><a href="profile">Profile</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.firstName}} {{user.lastName}} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" id="showAccountTypes">{{messages["customer.account.type"]}}: Basic</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"></li>
+                    <li><a href="logout">{{messages["tooter.logout"]}}</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="span12">
+            
+            <form id="user" action="profile" method="POST">
+                
+                <div class="control-group">
+					{% if error is defined and error%}
+							<div id="{{error.id}}" class="{{error.styleClass}}">
+							{% if error.message in messages|keys %}
+								{{messages[error.message]}}
+							{% else %}
+								{{error.message}}
+							{% endif %}
+							</div>
+					{% endif %}
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="firstName">{{messages["customer.first.name"]}}</label>
+                    <input id="firstName" name="firstName" type="text" value="{{user.firstName}}"/>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="lastName">{{messages["customer.last.name"]}}</label>
+                    <input id="lastName" name="lastName" type="text" value="{{user.lastName}}"/>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="email">{{messages["customer.email"]}}</label>
+                    <input id="email" name="email" type="text" value="{{user.email}}"/>
+                </div>
+                <div class="control-group">
+                    <label class="radio inline" style="margin-left: -18px !important;">{{messages["customer.account.type"]}}:</label>&nbsp;
+                    <label class="radio inline">
+                        <input id="groupUrl1" name="groupUrl" class="radio" type="radio" value="PUT THE REST URL TO A GROUP FOR ADMINISTRATOR LEVEL HERE -- THIS GROUP MUST EXIST IN THE DIRECTORY LISTED ABOVE"/> Administrator
+                    </label>
+                    <label class="radio inline">
+                        <input id="groupUrl2" name="groupUrl" class="radio" type="radio" value="PUT THE REST URL TO A GROUP FOR ADMINISTRATOR LEVEL HERE -- THIS GROUP MUST EXIST IN THE DIRECTORY LISTED ABOVE"/> Premium
+                    </label>
+                    <label class="radio inline">
+                        <input id="groupUrl3" name="groupUrl" class="radio" type="radio" value="" checked="checked"/> Basic
+                    </label>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                       <button type="submit" class="btn btn-primary">{{messages["profile.update"]}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" id="accountTypeModalContent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="myModalLabel">Account Types</h3>
+    </div>
+    <div class="modal-body">
+        <p>
+        <ul>
+            <li><b>Basic</b>: Create Toot. Toots are not highlighted.</li>
+            <li><b>Premium</b>: Create Toot. Toots are highlighted soft yellow.</li>
+            <li><b>Admin</b>: Create Toot. Delete Toot. Toots are highlighted soft blue.</li>
+        </ul>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+{% javascripts '@TooterBundle/Resources/public/assets/js/bootstrap.min.js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#accountTypeModalContent').modal();
+        $('#accountTypeModalContent').modal('hide');
+        $('#showAccountTypes').on('click', function() {
+            $('#accountTypeModalContent').modal('show');
+        });
+    });
+</script>
+
+</body>
+</html>
