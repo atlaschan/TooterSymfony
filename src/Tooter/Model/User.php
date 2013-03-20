@@ -217,7 +217,7 @@ class User
 	 
 	 public function getGroupUrl()
 	 {
-		return $this->groupUrl();
+		return $this->groupUrl;
 	 }
 	 
 	 
@@ -234,5 +234,6 @@ class User
 		$this->firstName	= (isset($data['firstName'])) ? $data['firstName'] : null;
 		$this->lastName	= (isset($data['lastName'])) ? $data['lastName'] : null;
 		$this->confirmPassword	= (isset($data['confirmPassword'])) ? $data['confirmPassword'] : null;
+		$this->groupUrl = (isset($data['groupUrl'])) ? $data['groupUrl'] : null;
     }
 }

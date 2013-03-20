@@ -16,7 +16,7 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user.firstName}} {{user.lastName}} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#" id="showAccountTypes">{{messages["customer.account.type"]}}: Basic</a></li>
+                    <li><a href="#" id="showAccountTypes">{{messages["customer.account.type"]}}: {% if isAdmin == true %}Administrator {% elseif isPremium == true %}Premium {% else %}Basic{% endif %}</a></li>
                     <li class="divider"></li>
                     <li class="nav-header"></li>
                     <li><a href="logout">{{messages["tooter.logout"]}}</a></li>
@@ -40,6 +40,8 @@
 								{{error.message}}
 							{% endif %}
 							</div>
+					{% elseif updateProfile == true %}
+						<div>{{ messages["profile.message.updated"] }}</div>
 					{% endif %}
                 </div>
                 <div class="control-group">
@@ -57,13 +59,15 @@
                 <div class="control-group">
                     <label class="radio inline" style="margin-left: -18px !important;">{{messages["customer.account.type"]}}:</label>&nbsp;
                     <label class="radio inline">
-                        <input id="groupUrl1" name="groupUrl" class="radio" type="radio" value="PUT THE REST URL TO A GROUP FOR ADMINISTRATOR LEVEL HERE -- THIS GROUP MUST EXIST IN THE DIRECTORY LISTED ABOVE"/> Administrator
+                        <input id="groupUrl1" name="groupUrl" class="radio" type="radio" value="{{application_property["stormpath.sdk.administrator.rest.url"]}}"
+						{% if isAdmin == true %}checked="checked"{% endif %} /> Administrator
                     </label>
                     <label class="radio inline">
-                        <input id="groupUrl2" name="groupUrl" class="radio" type="radio" value="PUT THE REST URL TO A GROUP FOR ADMINISTRATOR LEVEL HERE -- THIS GROUP MUST EXIST IN THE DIRECTORY LISTED ABOVE"/> Premium
+                        <input id="groupUrl2" name="groupUrl" class="radio" type="radio" value="{{application_property["stormpath.sdk.premium.rest.url"]}}" 
+						{% if isPremium == true %}checked="checked"{% endif %}/> Premium
                     </label>
                     <label class="radio inline">
-                        <input id="groupUrl3" name="groupUrl" class="radio" type="radio" value="" checked="checked"/> Basic
+                        <input id="groupUrl3" name="groupUrl" class="radio" type="radio" value="" {% if isAdmin == false and isPremium == false %}checked="checked"{% endif %}/> Basic
                     </label>
                 </div>
                 <div class="control-group">

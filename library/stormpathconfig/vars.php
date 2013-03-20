@@ -1,5 +1,5 @@
 <?php
-
+require("stormpathconfig/auto_loader.php");
 $sessionId = session_id();
 if(empty($sessionId)) {
     session_start();

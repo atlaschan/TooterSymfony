@@ -11,6 +11,7 @@ use Tooter\Model\Status;
 use Tooter\Model\Error; 
 use Tooter\Model\User;
 use Tooter\Form\TootForm;
+use Tooter\Util\PermissionUtil;
 use Tooter\Validator\TootValidator;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -37,6 +38,9 @@ class TootController extends Controller
 			return $this->redirect($this->generateUrl('_login'));
 		} 
 		
+		$user = $_SESSION["user"];
+		$error = null;
+		
 		$request = $this->get('request');
 		if ('POST' == $request->getMethod()) 
 		{
@@ -49,71 +53,22 @@ class TootController extends Controller
 			
 			$status = $this->submit($toot);
 			
-			if($status->getStatus() == Service::SUCCESS)
-			{
-
-				return array('messages'=>$messages,	
-					'base_directory'=>$base_directory,	
-					'current_directory'=>$current_directory,	
-					'application_property'=>$application_property,
-					'user'=>$_SESSION["user"]);
-			}
-			else
-			{
+			if($status->getStatus() != Service::SUCCESS)
 				$error = $status->getError();
-				return array('messages'=>$messages,	
-							'base_directory'=>$base_directory,	
-							'current_directory'=>$current_directory,	
-							'application_property'=>$application_property,
-							'error'=>$error);
-			}
 		}
 		
-		/*
-		$form = new TootForm();
-		$request = $this->getRequest();
-		
-		if($request->isPost())
-		{
-			$toot = new Toot();
-			
-			$form->setData($request->getPost());
-			if ($form->isValid()) {
-				
-				$this->stormpath = $stormpath; //initializing the service
-				
-                $toot->exchangeArray($form->getData());
-				
-				$status = $this->submit($toot);
-				
-				if($status->getStatus() == Service::SUCCESS)
-				{
+		$permissionUtil = new PermissionUtil($application_property);
+		$isAdmin = $permissionUtil->hasRole($user, "ADMINISTRATOR");
+		$isPremium = $permissionUtil->hasRole($user, "PREMIUM_USER");
 
-					return array('messages'=>$messages,	
-						'base_directory'=>$base_directory,	
-						'current_directory'=>$current_directory,	
-						'application_property'=>$application_property,
-						'user'=>$_SESSION["user"]);
-				}
-				else
-				{
-					$error = $status->getError();
-					return array('messages'=>$messages,	
-								'base_directory'=>$base_directory,	
-								'current_directory'=>$current_directory,	
-								'application_property'=>$application_property,
-								'error'=>$error);
-				}
-            }
-		}
-		*/
-		$user = (isset($_SESSION["user"])) ? $_SESSION["user"] : null;
 		return array('messages'=>$messages,	
 					'base_directory'=>$base_directory,	
 					'current_directory'=>$current_directory,	
 					'application_property'=>$application_property,
 					'user'=> $user,
-					'error'=>null);
+					'isAdmin' => $isAdmin,
+					'isPremium' => $isPremium, 
+					'error' => $error);
     }
 	
 	private function submit($toot)

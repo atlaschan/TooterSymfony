@@ -46,7 +46,7 @@ class PasswordController extends Controller
 			if($status->getStatus() == Service::SUCCESS)
 			{
 				return $this->redirect($this->generateUrl('_reset_password_msg'));
-				return $this->redirect()->toRoute('reset-password-msg');
+				//return $this->redirect()->toRoute('reset-password-msg');
 			}
 			else
 			{

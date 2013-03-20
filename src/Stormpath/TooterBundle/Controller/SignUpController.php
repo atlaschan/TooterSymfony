@@ -60,35 +60,7 @@ class SignUpController extends Controller
 							'error'=>$error);
 			}
 		}
-		/*
-		if($request->isPost())
-		{	
-			$user = new User();
-			
-			$form->setData($request->getPost());
-			if ($form->isValid()) {
-				
-				$this->stormpath = $stormpath; //initializing the service
-				
-                $user->exchangeArray($form->getData());
-				
-				$status = $this->processSubmit($user);
-				
-				if($status->getStatus() == Service::SUCCESS)
-				{
 
-					return $this->redirect()->toRoute('tooter');
-				}
-				else
-				{
-					$error = $status->getError();
-					return array('form' => $form, 'messages'=>$messages,	'base_directory'=>$base_directory,	
-						'current_directory'=>$current_directory,	'application_property'=>$application_property,
-						'error'=>$error);
-				}
-            }
-		}
-		*/
 		return array('messages'=>$messages,	
 					'base_directory'=>$base_directory,	
 					'current_directory'=>$current_directory,	
@@ -104,11 +76,12 @@ class SignUpController extends Controller
 		if(!empty($checked))
 			return $checked;
 		
+		$customerDao = new DefaultCustomerDao($this->stormpath->getConnector());
 		$status = new Status();
 		
 		//$returnStatus = array();
 		try{
-			$userName = strtolower($user->getFirstName()) + strtolower($user->getLastName());
+			$userName = strtolower($user->getFirstName()).strtolower($user->getLastName());
 			
 			// Create the account in the Directory where the Tooter application belongs.
 			$directory = $this->stormpath->getDataStore()->getResource($this->stormpath->getDirectoryURL(), \Services_Stormpath::DIRECTORY);
@@ -120,10 +93,20 @@ class SignUpController extends Controller
 			$account->setSurname($user->getLastName());
 			$account->setUsername($userName);
 			
-			$account = $directory->createAccount($account);
+			$directory->createAccount($account);
+			
+			//adding group after the account has been created
+			$groupUrl = $user->getGroupUrl();
+			if(!empty($groupUrl))
+			{
+				$dataStore = $this->stormpath->getDataStore();
+				$group = $dataStore->getResource($groupUrl, \Services_Stormpath::GROUP);
+				$account->addGroup($group);
+			}
 			
 			$user->setUserName($userName);
-			$this->customerDao->save($user);
+			$user->setAccount($account);
+			$customerDao->save($user);
 			
 			$status->setStatus(Service::SUCCESS);
 			$status->setObj(array("user"=>$user));

@@ -64,6 +64,10 @@ class IndexController extends Controller
 					'error'=>null);
     }
 	
+	public function indexAction()
+	{
+		return $this->redirect($this->generateUrl('_login'));
+	}
 	
 	/*
 	* Handle the main logic of authentication
