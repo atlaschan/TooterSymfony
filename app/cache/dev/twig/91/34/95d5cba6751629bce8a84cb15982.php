@@ -124,7 +124,12 @@ class __TwigTemplate_913495d5cba6751629bce8a84cb15982 extends Twig_Template
         echo "\t\t\t\t\t</div>
 
                     <div class=\"control-group\">
-                        <textarea id=\"tootMessage\" name=\"tootMessage\" maxlength=\"160\" placeholder=\"Compose your toot here...\" rows=\"3\"></textarea>
+                        <textarea id=\"tootMessage\" name=\"tootMessage\" maxlength=\"160\" placeholder=\"Compose your toot here...\" rows=\"3\" value=\"";
+        // line 48
+        if (((array_key_exists("error", $context) && (isset($context["error"]) ? $context["error"] : $this->getContext($context, "error"))) && (isset($context["tootMessage"]) ? $context["tootMessage"] : $this->getContext($context, "tootMessage")))) {
+            echo twig_escape_filter($this->env, (isset($context["tootMessage"]) ? $context["tootMessage"] : $this->getContext($context, "tootMessage")), "html", null, true);
+        }
+        echo "\"></textarea>
                     </div>
                     <div class=\"control-group\">
                         <div class=\"controls\">
@@ -143,7 +148,7 @@ class __TwigTemplate_913495d5cba6751629bce8a84cb15982 extends Twig_Template
         echo "</h3>
 \t\t\t\t";
         // line 62
-        if ((!(null === $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "tootList")))) {
+        if ((twig_length_filter($this->env, $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "tootList")) != 0)) {
             // line 63
             echo "\t\t\t\t\t";
             $context['_parent'] = (array) $context;
@@ -245,6 +250,6 @@ class __TwigTemplate_913495d5cba6751629bce8a84cb15982 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  221 => 99,  207 => 97,  203 => 96,  178 => 73,  172 => 69,  169 => 68,  156 => 65,  153 => 64,  148 => 63,  146 => 62,  142 => 61,  124 => 45,  120 => 43,  114 => 41,  108 => 39,  106 => 38,  99 => 37,  97 => 36,  82 => 24,  68 => 21,  61 => 19,  47 => 9,  33 => 7,  29 => 6,  25 => 5,  19 => 1,);
+        return array (  226 => 99,  212 => 97,  208 => 96,  183 => 73,  177 => 69,  174 => 68,  161 => 65,  158 => 64,  153 => 63,  151 => 62,  147 => 61,  129 => 48,  124 => 45,  120 => 43,  114 => 41,  108 => 39,  106 => 38,  99 => 37,  97 => 36,  82 => 24,  68 => 21,  61 => 19,  47 => 9,  33 => 7,  29 => 6,  25 => 5,  19 => 1,);
     }
 }

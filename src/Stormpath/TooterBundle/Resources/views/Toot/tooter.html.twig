@@ -45,7 +45,7 @@
 					</div>
 
                     <div class="control-group">
-                        <textarea id="tootMessage" name="tootMessage" maxlength="160" placeholder="Compose your toot here..." rows="3"></textarea>
+                        <textarea id="tootMessage" name="tootMessage" maxlength="160" placeholder="Compose your toot here..." rows="3" value="{% if error is defined and error and tootMessage%}{{tootMessage}}{% endif %}"></textarea>
                     </div>
                     <div class="control-group">
                         <div class="controls">
@@ -59,7 +59,7 @@
     <div class="row">
         <div class="span12">
             <h3>{{messages["tooter.toots"]}}</h3>
-				{% if user.tootList is not null %}
+				{% if user.tootList|length != 0 %}
 					{% for toot in user.tootList %}
 						<div class="well well-small basic" title="Poster's Account Type" data-content="Basic">
 							<code><a href="profile">{{user.firstName}} {{user.lastName}}</a>: {{toot.tootMessage}}</code>

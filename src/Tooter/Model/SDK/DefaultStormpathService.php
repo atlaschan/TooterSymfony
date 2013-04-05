@@ -47,7 +47,7 @@ class DefaultStormpathService implements StormpathService
 		$obj->administratorGroupURL = $application_property["stormpath.sdk.administrator.rest.url"];
 		$obj->premiumGroupURL = $application_property["stormpath.sdk.premium.rest.url"];
 		
-		$obj->connector = new Connector($application_property["stormpath.sdk.tooter.username"], $application_property["stormpath.sdk.tooter.password"], $application_property["stormpath.sdk.tooter.database"]);
+		$obj->connector = new Connector();
 		
 		return $obj;
 	}

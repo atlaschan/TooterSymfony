@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Tooter\Service;
 use Tooter\Model\Dao\DefaultTootDao;
+use Tooter\Model\Dao\DefaultCustomerDao;
 use Tooter\Model\Toot;
 use Tooter\Model\Status;
 use Tooter\Model\Error; 
@@ -40,7 +41,9 @@ class TootController extends Controller
 		
 		$user = $_SESSION["user"];
 		$error = null;
+		$tootMessage = null;
 		
+		$this->stormpath = $stormpath; //initializing the service
 		$request = $this->get('request');
 		if ('POST' == $request->getMethod()) 
 		{
@@ -48,13 +51,16 @@ class TootController extends Controller
 			
 			$data = $request->request->all();
 			$toot->exchangeArray($data);
-			
-			$this->stormpath = $stormpath; //initializing the service
+			$tootMessage = $toot->getTootMessage();
 			
 			$status = $this->submit($toot);
 			
 			if($status->getStatus() != Service::SUCCESS)
 				$error = $status->getError();
+		}
+		else
+		{
+			$this->retrieveToots();
 		}
 		
 		$permissionUtil = new PermissionUtil($application_property);
@@ -68,7 +74,8 @@ class TootController extends Controller
 					'user'=> $user,
 					'isAdmin' => $isAdmin,
 					'isPremium' => $isPremium, 
-					'error' => $error);
+					'error' => $error,
+					'tootMessage' => $tootMessage);
     }
 	
 	private function submit($toot)
@@ -117,6 +124,24 @@ class TootController extends Controller
 		return $status;
 	}
 
+	private function retrieveToots()
+	{
+		$tootDao = new DefaultTootDao($this->stormpath->getConnector());
+		$customerDao = new DefaultCustomerDao($this->stormpath->getConnector());
+	
+		$user = $_SESSION["user"];
+		$customer = $customerDao->getCustomerByUserName($user->getUserName());
+		
+		$tootList = $tootDao->getTootsByUserId($customer->getId());
+
+		foreach ($tootList as $key=>$itemToot) {
+			$itemToot->setCustomer($user);
+		}
+
+		krsort($tootList, SORT_NUMERIC);
+		$user->setTootList($tootList);
+	}
+	
 }
 
 ?>
